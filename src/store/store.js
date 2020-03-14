@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 
 Vue.use(Vuex);
+Vue.use(require('vue-moment'));
 axios.defaults.baseURL = 'https://front-test.beta.aviasales.ru';
 
 export const store = new Vuex.Store({
@@ -12,6 +13,7 @@ export const store = new Vuex.Store({
         searchId: false,
         searchStop: 0,
         ticketsSearch: [],
+        selectedFilters: []
     },
     getters: {
         updateSorting(state) {
@@ -21,21 +23,26 @@ export const store = new Vuex.Store({
                 })
             } else if (state.sortState === 'fastest') {
                 state.ticketsSearch.sort(function (a, b) {
-                    if (a.segments[0].duration - b.segments[0].duration !== 0) {
-                        return a.segments[0].duration - b.segments[0].duration;
-                    } else {
-                        return a.segments[1].duration - b.segments[1].duration;
-                    }
-                    // return a.segments[0].date.localeCompare(b.segments[0].date);
+                    return a.segments[0].duration - b.segments[0].duration;
                 })
             }
+        },
+        filteredTickets(state) {
+            let tickets = state.selectedFilters.length > 0 ? [] : state.ticketsSearch;
+            state.selectedFilters.forEach(filter => {
+                state.ticketsSearch.forEach(ticket => {
+                    if (ticket.segments[0].stops.length === filter.stops)
+                        tickets.push(ticket)
+                })
+            });
+            return tickets
         }
     },
     mutations: {
         retrieveTickets(state, data) {
             state.ticketsSearch = state.ticketsSearch.concat(data.tickets);
             // console.log(data.tickets[0]);
-            if (data.stop) {
+            if (data.stop === true) {
                 state.searchStop = data.stop
             } else {
                 state.searchStop++;
@@ -47,6 +54,9 @@ export const store = new Vuex.Store({
         },
         sortStateSet(state, sortState) {
             state.sortState = sortState;
+        },
+        updateFilters(state, filters) {
+            state.selectedFilters = filters.filter(filter => filter.filtered === true);
         }
     },
     actions: {
@@ -91,4 +101,3 @@ export const store = new Vuex.Store({
         }
     }
 })
-// todo hj

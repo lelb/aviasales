@@ -36,6 +36,10 @@
         font-size: 24px;
     }
 
+    .t13 {
+        font-size: 13px;
+    }
+
     .t14 {
         font-size: 14px;
     }
@@ -47,6 +51,14 @@
 
     .d-block {
         display: block;
+    }
+
+    .d-inline-block {
+        display: inline-block;
+    }
+
+    .d-none {
+        display: none !important;
     }
 
     .container {
@@ -81,12 +93,20 @@
         text-align: center;
     }
 
+    .jc_between {
+        justify-content: space-between;
+    }
+
     .jc_center {
         justify-content: center;
     }
 
     .ai_center {
         align-items: center;
+    }
+
+    .ai_start {
+        align-items: flex-start;
     }
 
     .white_bg {
@@ -218,7 +238,7 @@
     }
 
     .p20-t {
-        padding-bottom: 20px;
+        padding-top: 20px;
     }
 
     .p20-r {
@@ -281,5 +301,40 @@
 
     ul {
         list-style: none;
+    }
+
+    .checkbox {
+        display: block;
+        border: 1px solid #9ABBCE;
+        border-radius: 2px;
+        width: 20px;
+        height: 20px;
+        transition: .3s all;
+        position: relative;
+        cursor: pointer;
+
+        &.checked {
+            border-color: #2196F3;
+
+            &:after {
+                opacity: 1;
+                transform: rotate(-45deg) scale(1);
+            }
+        }
+
+        &:after {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 11px;
+            height: 5px;
+            border-bottom: 2px solid #2196F3;
+            border-left: 2px solid #2196F3;
+            transform: rotate(0deg) scale(1.8);
+            transition: .3s all;
+            left: 2px;
+            top: 3px;
+            opacity: 0;
+        }
     }
 </style>
