@@ -144,18 +144,6 @@
             //     }
             // }
         },
-        filters: {
-            filterTickets: function (tickets, filters) {
-                if (!tickets || !filters) return '';
-                filters.filter(filter => filter.filtered);
-                filters.forEach(filter => {
-                    tickets.filter(ticket => {
-                        ticket.segments[0].stops.length == filter.stops
-                    })
-                });
-                return tickets
-            }
-        },
         computed: {
             searchId() {
                 return this.$store.state.searchId

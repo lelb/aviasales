@@ -67,9 +67,9 @@ export const store = new Vuex.Store({
                         searchId: id
                     }
                 }).then(response => {
-                    if (context.state.searchStop !== true) {
-                        context.dispatch('retrieveTickets', context.state.searchId)
-                    }
+                    // if (context.state.searchStop !== true) {
+                    //     context.dispatch('retrieveTickets', context.state.searchId)
+                    // }
                     context.commit('retrieveTickets', response.data);
                     resolve(response)
                 }).catch(error => {
@@ -82,11 +82,6 @@ export const store = new Vuex.Store({
             });
         },
         retrieveSearchId(context) {
-            // axios.get('/search').then(response => {
-            //     context.commit('retrieveSearchId', response.data.searchId);
-            // }).catch(error => {
-            //     console.log(error)
-            // })
             return new Promise((resolve, reject) => {
                 axios.get('/search'
                 ).then(response => {
