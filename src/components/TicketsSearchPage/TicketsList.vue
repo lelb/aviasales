@@ -57,92 +57,10 @@
     export default {
         name: 'TicketsList',
         data() {
-            return {
-                image: './assets/img/logo.svg'
-                // tickets: [
-                //     {
-                //         id: 1,
-                //         // Цена в рублях
-                //         price: 444,
-                //         // Код авиакомпании (iata)
-                //         carrier: 'string',
-                //         // Массив перелётов.
-                //         // В тестовом задании это всегда поиск "туда-обратно" значит состоит из двух элементов
-                //         segments: [
-                //             {
-                //                 // Код города (iata)
-                //                 origin: 'string',
-                //                 // Код города (iata)
-                //                 destination: 'string',
-                //                 // Дата и время вылета туда
-                //                 date: 'string',
-                //                 // Массив кодов (iata) городов с пересадками
-                //                 stops: 'string',
-                //                 // Общее время перелёта в минутах
-                //                 duration: 555,
-                //             },
-                //             {
-                //                 // Код города (iata)
-                //                 origin: 'string',
-                //                 // Код города (iata)
-                //                 destination: 'string',
-                //                 // Дата и время вылета обратно
-                //                 date: 'string',
-                //                 // Массив кодов (iata) городов с пересадками
-                //                 stops: 'string',
-                //                 // Общее время перелёта в минутах
-                //                 duration: 666,
-                //             }
-                //         ]
-                //     },
-                //     {
-                //         id: 2,
-                //         // Цена в рублях
-                //         price: 444,
-                //         // Код авиакомпании (iata)
-                //         carrier: 'string',
-                //         // Массив перелётов.
-                //         // В тестовом задании это всегда поиск "туда-обратно" значит состоит из двух элементов
-                //         segments: [
-                //             {
-                //                 // Код города (iata)
-                //                 origin: 'string',
-                //                 // Код города (iata)
-                //                 destination: 'string',
-                //                 // Дата и время вылета туда
-                //                 date: 'string',
-                //                 // Массив кодов (iata) городов с пересадками
-                //                 stops: 'string',
-                //                 // Общее время перелёта в минутах
-                //                 duration: 555,
-                //             },
-                //             {
-                //                 // Код города (iata)
-                //                 origin: 'string',
-                //                 // Код города (iata)
-                //                 destination: 'string',
-                //                 // Дата и время вылета обратно
-                //                 date: 'string',
-                //                 // Массив кодов (iata) городов с пересадками
-                //                 stops: 'string',
-                //                 // Общее время перелёта в минутах
-                //                 duration: 666,
-                //             }
-                //         ]
-                //     }
-                // ]
-            }
+            return {}
         },
         created() {
             this.$store.dispatch('retrieveSearchId');
-        },
-        watch: { //todo check functional
-            // checkAll() {
-            //     if (this.searchId) {
-            //         console.log(this.searchId);
-            //         this.$store.dispatch('retrieveTickets', this.searchId);
-            //     }
-            // }
         },
         computed: {
             searchId() {
@@ -151,9 +69,6 @@
             loader() {
                 return this.$store.state.loader
             },
-            // tickets() {
-            //     return this.$store.state.ticketsSearch
-            // },
             filteredTickets() {
                 return this.$store.getters.filteredTickets
             }
