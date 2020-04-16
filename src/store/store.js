@@ -16,17 +16,6 @@ export const store = new Vuex.Store({
         selectedFilters: []
     },
     getters: {
-        updateSorting(state) {
-            if (state.sortState === 'cheapest') {
-                state.ticketsSearch.sort(function (a, b) {
-                    return (a.price - b.price);
-                })
-            } else if (state.sortState === 'fastest') {
-                state.ticketsSearch.sort(function (a, b) {
-                    return a.segments[0].duration - b.segments[0].duration;
-                })
-            }
-        },
         filteredTickets(state) {
             let tickets = state.selectedFilters.length > 0 ? [] : state.ticketsSearch;
             state.selectedFilters.forEach(filter => {
@@ -35,6 +24,7 @@ export const store = new Vuex.Store({
                         tickets.push(ticket)
                 })
             });
+
             return tickets
         }
     },
@@ -54,6 +44,15 @@ export const store = new Vuex.Store({
         },
         sortStateSet(state, sortState) {
             state.sortState = sortState;
+            if (state.sortState === 'cheapest') {
+                state.ticketsSearch.sort(function (a, b) {
+                    return (a.price - b.price);
+                })
+            } else if (state.sortState === 'fastest') {
+                state.ticketsSearch.sort(function (a, b) {
+                    return a.segments[0].duration - b.segments[0].duration;
+                })
+            }
         },
         updateFilters(state, filters) {
             state.selectedFilters = filters.filter(filter => filter.filtered === true);
@@ -67,9 +66,9 @@ export const store = new Vuex.Store({
                         searchId: id
                     }
                 }).then(response => {
-                    // if (context.state.searchStop !== true) {
-                    //     context.dispatch('retrieveTickets', context.state.searchId)
-                    // }
+                    if (context.state.searchStop !== true) {
+                        context.dispatch('retrieveTickets', context.state.searchId)
+                    }
                     context.commit('retrieveTickets', response.data);
                     resolve(response)
                 }).catch(error => {
