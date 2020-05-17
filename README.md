@@ -1,4 +1,4 @@
-# Aviasales test app using vue.js github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend
+# Aviasales test app using vue.js [Task link](github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend)
 
 ## Project setup
 ```
